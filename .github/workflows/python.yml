@@ -1,0 +1,44 @@
+name: Python Application Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Specify Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest > result.log; tail -n 10 result.log  # Running tests and displaying the last 10 lines of result
+
+    - name: Build application
+      run: |
+        mkdir build
+        # Here, we're just creating a 'build' directory as an example of build artifacts.
+        echo "Build artifacts for the app" > build/artifact.txt
+        echo "Python Application Build" >> build/artifact.txt
+
+    - name: Store build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: python-app-artifact
+        path: build/

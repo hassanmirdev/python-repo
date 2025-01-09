@@ -38,7 +38,7 @@ jobs:
         echo "Python Application Build" >> build/artifact.txt
 
     - name: Store build artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4.5.0
       with:
         name: python-app-artifact
         path: build/

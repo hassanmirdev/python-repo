@@ -1,6 +1,13 @@
 name: github workflow context
 on:
- push
+ push:
+ workflow_dispatch:
+  inputs:
+   debug: 
+    type: boolean
+    default: false
+    
+ 
 env:
  my_var: workflow
 jobs:

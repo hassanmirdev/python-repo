@@ -10,7 +10,8 @@ jobs:
     - name: context-worflow
       run: |
        echo "env variable ${{ env.my_var }}"
-       echo "variable is ${{ vars.reponame }}"
+       echo "global-variable is ${{ vars.reponame }}"
+       echo "Secret-variable is ${{ secrets.my_pass }}"
       
         
         

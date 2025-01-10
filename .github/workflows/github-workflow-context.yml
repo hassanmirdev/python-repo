@@ -5,13 +5,26 @@ env:
  my_var: workflow
 jobs:
   build_job:
-   runs-on: ubuntu-latest
+   runs-on: ${{ matrix.os }}
+   strategy:
+    matrix:
+      os:
+        - ubuntu-latest
+        - windows-latest
+
+      node-version: [ v22.6.0, v21.7.3 ]
+        
    steps: 
-    - name: context-worflow
-      run: |
-       echo "env variable ${{ env.my_var }}"
-       echo "global-variable is ${{ vars.reponame }}"
-       echo "Secret-variable is ${{ secrets.my_pass }}"
+    - name: node setup
+      uses: actions/setup-node@v4.1.0
+      with:
+       node-version: ${{matrix.node-version }}
+    - run: | 
+       echo " os version is: ${{ matrix.os }}"
+       echo "Node version is: ${{ matrix.node-version }}"
+       
+
+    
       
         
         

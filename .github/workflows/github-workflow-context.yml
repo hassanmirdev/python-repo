@@ -10,8 +10,6 @@ jobs:
     my_var: workflow-job
    steps:
     - name: context-worflow
-      env:
-        my_var: workflow-step
       run: echo "env variable ${{ env.my_var }}"
       
         

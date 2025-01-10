@@ -1,19 +1,19 @@
 name: github workflow context
 on:
  push
+env:
+ my_var: workflow
 jobs:
   build_job:
    runs-on: ubuntu-latest
+   env:
+    my_var: workflow-job
    steps:
     - name: context-worflow
-      run: |
-        echo "event_name ${{ github.event_name }}"
-        echo "reference_name ${{ github.ref }}"
-        echo "sha_value ${{ github.sha }}"
-        echo "actor_name ${{ github.actor }}"
-        echo "workflow_name ${{ github.workflow }}"
-        echo "run_id ${{ github.run_id }}"
-        echo "run_number ${{ github.run_number }}"
+      env:
+        my_var: workflow-step
+      run: echo "env variable $ {{ env. my_var }}"
+      
         
         
    

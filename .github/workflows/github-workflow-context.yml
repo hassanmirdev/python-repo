@@ -1,4 +1,5 @@
 name: github workflow context
+run-name: debug | DEBUG - ${{ inputs.debug }}
 on:
  push:
  workflow_dispatch:

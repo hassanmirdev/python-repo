@@ -6,9 +6,11 @@ env:
 jobs:
   build_job:
    runs-on: ubuntu-latest
-   steps:
+   steps: 
     - name: context-worflow
-      run: echo "env variable ${{ env.my_var }}"
+      run: |
+       echo "env variable ${{ env.my_var }}"
+       echo "variable is ${{ vars.reponame }}"
       
         
         
